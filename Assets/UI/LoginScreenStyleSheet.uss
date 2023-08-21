@@ -1,0 +1,32 @@
+.col3Btn {
+    align-items: center;
+    align-self: center;
+    border-top-left-radius: 50px;
+    border-bottom-left-radius: 50px;
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background-image: url('project://database/Assets/Graphics/repair.png?fileID=2800000&guid=ec3bdf2670d743b4da42d6ca49f3d242&type=3#repair');
+    -unity-background-scale-mode: stretch-to-fill;
+    -unity-slice-top: 4;
+    -unity-slice-left: 4;
+    -unity-slice-right: 4;
+    -unity-slice-bottom: 4;
+    background-color: rgba(145, 140, 214, 0.33);
+    -unity-background-image-tint-color: rgb(255, 255, 255);
+    scale: 2 2;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    flex-grow: 0;
+    flex-shrink: 1;
+    -unity-slice-scale: 1px;
+    translate: 0 28px;
+    rotate: 0;
+    width: auto;
+    height: auto;
+}
