@@ -10,38 +10,38 @@ public class MainLoginScreenUI : MonoBehaviour
     UIDocument loginScreenUIDocument;
     VisualElement googleSignInButton;
     Button anonymousSignInButton;
+
+    IAuth authManager;
+    ServiceInitialization serviceInitialization;
     // Start is called before the first frame update
-    private void OnEnable()
+    private async void OnEnable()
     {
+        authManager = new AuthManager();
+        serviceInitialization = new ServiceInitialization();
         loginScreenUIDocument = GetComponent<UIDocument>();
+
         if (loginScreenUIDocument != null )
         {
             googleSignInButton = loginScreenUIDocument.rootVisualElement.Q<VisualElement>("GoogleSignInBtn");
-            if( googleSignInButton != null )
-            {
-                googleSignInButton.RegisterCallback<ClickEvent>(OnGoogleSignInBtnClicked);
-            }
             anonymousSignInButton = loginScreenUIDocument.rootVisualElement.Q<Button>("AnonymousSignInBtn");
-            if (googleSignInButton != null)
-            {
-                anonymousSignInButton.RegisterCallback<ClickEvent>(OnAnonymousSignInBtnClicked);
-            }
+
+            if( googleSignInButton != null ) googleSignInButton.RegisterCallback<ClickEvent>(OnGoogleSignInBtnClicked);
+            if (anonymousSignInButton != null)  anonymousSignInButton.RegisterCallback<ClickEvent>(OnAnonymousSignInBtnClicked);
+
         }
+        await serviceInitialization.UnityServiceInitialization();
+        if(serviceInitialization.isUnityServiceInitialized) authManager.RegisterAuthenticationEvents();
     }
 
     private void OnAnonymousSignInBtnClicked(ClickEvent evt)
     {
         Debug.Log(evt.currentTarget);
-
+        authManager.GuestSignIn();
     }
 
     private void OnGoogleSignInBtnClicked(ClickEvent evt)
     {
-        Debug.Log(evt.currentTarget);
+        authManager.GoogleSignIn();
     }
 
-    void Start()
-    {
-        
-    }
 }
